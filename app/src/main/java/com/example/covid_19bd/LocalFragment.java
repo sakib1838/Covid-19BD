@@ -6,9 +6,12 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
+import android.provider.ContactsContract;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
@@ -36,7 +39,7 @@ public class LocalFragment extends Fragment {
 
     ListView listView;
     ProgressDialog progressDialog;
-    EditText editTextSearch;
+    AutoCompleteTextView autoCompleteTextView;
     ImageButton searchBtn,clearSearch;
     LinearLayout linearLayout;
     TextView textViewCountry,textViewCases,textViewTodayCases,textViewDeaths,textViewTodayDeaths,textViewActive,textViewRecovered,textViewCritical,textViewCasePerMillion;
@@ -53,9 +56,8 @@ public class LocalFragment extends Fragment {
         View view= inflater.inflate(R.layout.fragment_local, container, false);
 
 
-        editTextSearch=(EditText)view.findViewById(R.id.searchEditText);
+        autoCompleteTextView=(AutoCompleteTextView) view.findViewById(R.id.searchAutoCompletText);
         searchBtn=(ImageButton) view.findViewById(R.id.searchbtn);
-
 
         linearLayout=(LinearLayout)view.findViewById(R.id.searchResult);
 
@@ -74,11 +76,14 @@ public class LocalFragment extends Fragment {
         searchBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String text=editTextSearch.getText().toString();
+                String text=autoCompleteTextView.getText().toString();
+                System.out.println(text);
                 searchCountry(text);
 
             }
         });
+
+
 
         clearSearch=(ImageButton)view.findViewById(R.id.clearsearch);
         clearSearch.setOnClickListener(new View.OnClickListener() {
@@ -86,7 +91,7 @@ public class LocalFragment extends Fragment {
             public void onClick(View view) {
                 linearLayout.setVisibility(View.GONE);
                 listView.setVisibility(View.VISIBLE);
-                editTextSearch.setText("");
+                autoCompleteTextView.setText("");
             }
         });
         return view;
@@ -129,6 +134,7 @@ public class LocalFragment extends Fragment {
                         DataHold.countryEntityArrayList.clear();
                     }
                     DataHold.countryEntityArrayList=countryEntityArrayList;
+                    System.out.println(DataHold.countryEntityArrayList.size());
                     if(!(DataHold.countryEntityArrayList==null) && DataHold.countryEntityArrayList.size()>0){
                         listViewAdapter=new ListViewAdapter(getContext(),DataHold.countryEntityArrayList);
                         listView.setAdapter(listViewAdapter);
@@ -160,7 +166,7 @@ public class LocalFragment extends Fragment {
             @Override
             public void onResponse(String response) {
                 try {
-                    JSONObject jsonObject = new JSONObject(response.toString());
+                    JSONObject jsonObject = new JSONObject(response);
                     String country = jsonObject.getString("country");
                     String cases=jsonObject.getString("cases");
                     String tcases=jsonObject.getString("todayCases");
