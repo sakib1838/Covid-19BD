@@ -19,11 +19,14 @@ import com.android.volley.toolbox.Volley;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.DecimalFormat;
+
 
 public class GlobalFragment extends Fragment {
 
     TextView txtViewCase,txtViewDeath,txtViewRecovered;
 
+    DecimalFormat decimalFormat=new DecimalFormat("#,###,###");
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -54,9 +57,9 @@ public class GlobalFragment extends Fragment {
                     String cases=jsonObject.getString("cases");
                     String death=jsonObject.getString("deaths");
                     String recover=jsonObject.getString("recovered");
-                    txtViewCase.setText(cases);
-                    txtViewDeath.setText(death);
-                    txtViewRecovered.setText(recover);
+                    txtViewCase.setText(String.valueOf(decimalFormat.format(Integer.valueOf(cases))));
+                    txtViewDeath.setText(String.valueOf(decimalFormat.format(Integer.valueOf(death))));
+                    txtViewRecovered.setText(String.valueOf(decimalFormat.format(Integer.valueOf(recover))));
                     System.out.println(cases+death+recover);
                 } catch (JSONException e) {
                     e.printStackTrace();

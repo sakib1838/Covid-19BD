@@ -9,11 +9,13 @@ import android.widget.TextView;
 
 import org.w3c.dom.Text;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 public class ListViewAdapter extends BaseAdapter {
     private Context context;
     ArrayList<CountryEntity>countryEntityArrayList;
+    DecimalFormat decimalFormat=new DecimalFormat("#,###,###");
 
     public ListViewAdapter(Context context,ArrayList<CountryEntity>countryEntityArrayList){
         this.context=context;
@@ -58,14 +60,14 @@ public class ListViewAdapter extends BaseAdapter {
         }
 
         holder.textViewCountry.setText(countryEntityArrayList.get(i).getCountry());
-        holder.textViewCases.setText("Cases: "+countryEntityArrayList.get(i).getCases());
-        holder.textViewTodayCases.setText("Today: "+countryEntityArrayList.get(i).getTodayCases());
-        holder.textViewDeaths.setText("Deaths: "+countryEntityArrayList.get(i).getDeaths());
-        holder.textViewTodayDeaths.setText("Today: "+countryEntityArrayList.get(i).getTodayDeaths());
-        holder.textViewActive.setText("Active: "+countryEntityArrayList.get(i).getActive());
-        holder.textViewRecovered.setText("Recovered: "+countryEntityArrayList.get(i).getRecovered());
-        holder.textViewCritical.setText("Critical: "+countryEntityArrayList.get(i).getCritical());
-        holder.textViewCasePerMillion.setText("CasePerOneMillion: "+countryEntityArrayList.get(i).getCaseperMillion());
+        holder.textViewCases.setText("Cases: "+(decimalFormat.format(Integer.valueOf(countryEntityArrayList.get(i).getCases()))));
+        holder.textViewTodayCases.setText("Today: "+(decimalFormat.format(Integer.valueOf(countryEntityArrayList.get(i).getTodayCases()))));
+        holder.textViewDeaths.setText("Deaths: "+(decimalFormat.format(Integer.valueOf(countryEntityArrayList.get(i).getDeaths()))));
+        holder.textViewTodayDeaths.setText("Today: "+(decimalFormat.format(Integer.valueOf(countryEntityArrayList.get(i).getTodayDeaths()))));
+        holder.textViewActive.setText("Active: "+(decimalFormat.format(Integer.valueOf(countryEntityArrayList.get(i).getActive()))));
+        holder.textViewRecovered.setText("Recovered: "+(decimalFormat.format(Integer.valueOf(countryEntityArrayList.get(i).getRecovered()))));
+        holder.textViewCritical.setText("Critical: "+(decimalFormat.format(Integer.valueOf(countryEntityArrayList.get(i).getCritical()))));
+        holder.textViewCasePerMillion.setText("CasePerOneMillion: "+(decimalFormat.format(Integer.valueOf(countryEntityArrayList.get(i).getCaseperMillion()))));
 
         return view;
     }

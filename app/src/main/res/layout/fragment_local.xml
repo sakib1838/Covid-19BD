@@ -21,7 +21,7 @@
             <EditText
                 android:id="@+id/searchEditText"
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
+                android:layout_height="60dp"
                 android:layout_weight="2"
                 />
             <ImageButton
@@ -72,7 +72,7 @@
                 android:id="@+id/countryName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="30sp"
+                android:textSize="20sp"
                 android:text="Country"
                 />
 
@@ -86,7 +86,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="cases"
-                    android:textSize="20dp"
+                    android:textSize="18sp"
                     android:padding="5dp"
 
                     />
@@ -96,7 +96,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="cases"
-                    android:textSize="20dp"
+                    android:textSize="18sp"
                     android:padding="5dp"
                     />
 
@@ -105,7 +105,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="active"
-                    android:textSize="20dp"
+                    android:textSize="18sp"
                     android:padding="5dp"
                     />
 
@@ -121,7 +121,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="cases"
-                    android:textSize="20dp"
+                    android:textSize="18sp"
                     android:padding="5dp"
 
                     />
@@ -131,7 +131,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="cases"
-                    android:textSize="20dp"
+                    android:textSize="18sp"
                     android:padding="5dp"
                     />
 
@@ -149,7 +149,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="recovered"
-                    android:textSize="20dp"
+                    android:textSize="18sp"
                     android:padding="5dp"
                     />
 
@@ -158,7 +158,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="critical"
-                    android:textSize="20dp"
+                    android:textSize="18sp"
                     android:padding="5dp"
                     />
 
@@ -169,7 +169,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="critical"
-                android:textSize="20dp"
+                android:textSize="18sp"
                 android:padding="5dp"
                 />
 

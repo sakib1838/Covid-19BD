@@ -1,6 +1,7 @@
 package com.example.covid_19bd;
 
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -21,11 +22,13 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 
@@ -39,6 +42,7 @@ public class LocalFragment extends Fragment {
     TextView textViewCountry,textViewCases,textViewTodayCases,textViewDeaths,textViewTodayDeaths,textViewActive,textViewRecovered,textViewCritical,textViewCasePerMillion;
     ListViewAdapter listViewAdapter;
     ArrayList<CountryEntity>countryEntityArrayList;
+    DecimalFormat decimalFormat=new DecimalFormat("#,###,###");
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -168,14 +172,14 @@ public class LocalFragment extends Fragment {
                     String casePerMillion=jsonObject.getString("casesPerOneMillion");
 
                     textViewCountry.setText(country);
-                    textViewCases.setText("Cases: "+cases);
-                    textViewTodayCases.setText("Today:"+tcases);
-                    textViewDeaths.setText("Deaths:"+deaths);
-                    textViewTodayDeaths.setText("Today:"+tdeaths);
-                    textViewActive.setText("Active:"+active);
-                    textViewRecovered.setText("Recovered:"+recovered);
-                    textViewCritical.setText("Critical: "+critical);
-                    textViewCasePerMillion.setText("CasesPerOneMillion: "+casePerMillion);
+                    textViewCases.setText("Cases: "+decimalFormat.format(Integer.valueOf(cases)));
+                    textViewTodayCases.setText("Today:"+decimalFormat.format(Integer.valueOf(tcases)));
+                    textViewDeaths.setText("Deaths:"+decimalFormat.format(Integer.valueOf(deaths)));
+                    textViewTodayDeaths.setText("Today:"+decimalFormat.format(Integer.valueOf(tdeaths)));
+                    textViewActive.setText("Active:"+decimalFormat.format(Integer.valueOf(active)));
+                    textViewRecovered.setText("Recovered: "+decimalFormat.format(Integer.valueOf(recovered)));
+                    textViewCritical.setText("Critical: "+decimalFormat.format(Integer.valueOf(critical)));
+                    textViewCasePerMillion.setText("CasesPerOneMillion: "+decimalFormat.format(Integer.valueOf(casePerMillion)));
 
                     linearLayout.setVisibility(View.VISIBLE);
                     listView.setVisibility(View.INVISIBLE);
@@ -187,7 +191,17 @@ public class LocalFragment extends Fragment {
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-
+                new MaterialAlertDialogBuilder(getContext())
+                        .setTitle("Warning")
+                        .setMessage(error.toString())
+                        .setIcon(R.drawable.ic_warning)
+                        .setNegativeButton("ok", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                progressDialog.dismiss();
+                            }
+                        })
+                        .show();
             }
         });
 

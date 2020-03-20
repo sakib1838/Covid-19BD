@@ -10,8 +10,9 @@
         android:id="@+id/countryName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="30sp"
+        android:textSize="20sp"
         android:text="Country"
+        android:padding="5dp"
         />
 
     <LinearLayout
@@ -24,7 +25,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="cases"
-            android:textSize="20dp"
+            android:textSize="16sp"
             android:padding="5dp"
 
             />
@@ -34,7 +35,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="cases"
-            android:textSize="20dp"
+            android:textSize="16sp"
             android:padding="5dp"
             />
 
@@ -43,7 +44,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="active"
-            android:textSize="20dp"
+            android:textSize="16sp"
             android:padding="5dp"
             />
 
@@ -59,7 +60,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="cases"
-            android:textSize="20dp"
+            android:textSize="16sp"
             android:padding="5dp"
 
             />
@@ -69,7 +70,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="cases"
-            android:textSize="20dp"
+            android:textSize="16sp"
             android:padding="5dp"
             />
 
@@ -87,7 +88,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="recovered"
-            android:textSize="20dp"
+            android:textSize="16sp"
             android:padding="5dp"
             />
 
@@ -96,7 +97,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="critical"
-            android:textSize="20dp"
+            android:textSize="16sp"
             android:padding="5dp"
             />
 
@@ -107,7 +108,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="critical"
-        android:textSize="20dp"
+        android:textSize="16sp"
         android:padding="5dp"
         />
 

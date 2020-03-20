@@ -39,6 +39,8 @@ public class MainActivity extends AppCompatActivity {
         frameLayout=(FrameLayout)findViewById(R.id.container);
         bottomNavigationView=(BottomNavigationView)findViewById(R.id.bottom_navigation);
 
+        getSupportFragmentManager().beginTransaction().replace(R.id.container,new GlobalFragment()).commit();
+
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
