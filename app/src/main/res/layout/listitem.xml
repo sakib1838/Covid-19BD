@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/shadow"
+    android:padding="5dp"
+    >
+
+    <TextView
+        android:id="@+id/countryName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="30sp"
+        android:text="Country"
+        />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        >
+        <TextView
+            android:id="@+id/txtCases"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="cases"
+            android:textSize="20dp"
+            android:padding="5dp"
+
+            />
+
+        <TextView
+            android:id="@+id/todayCases"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="cases"
+            android:textSize="20dp"
+            android:padding="5dp"
+            />
+
+        <TextView
+            android:id="@+id/active"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="active"
+            android:textSize="20dp"
+            android:padding="5dp"
+            />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        >
+        <TextView
+            android:id="@+id/deaths"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="cases"
+            android:textSize="20dp"
+            android:padding="5dp"
+
+            />
+
+        <TextView
+            android:id="@+id/todaydeaths"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="cases"
+            android:textSize="20dp"
+            android:padding="5dp"
+            />
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        >
+
+        <TextView
+            android:id="@+id/recovered"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="recovered"
+            android:textSize="20dp"
+            android:padding="5dp"
+            />
+
+        <TextView
+            android:id="@+id/critical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="critical"
+            android:textSize="20dp"
+            android:padding="5dp"
+            />
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/casePerMillion"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="critical"
+        android:textSize="20dp"
+        android:padding="5dp"
+        />
+
+
+
+</LinearLayout>

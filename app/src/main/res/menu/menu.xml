@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/global"
+        android:title="Global Information"
+        app:showAsAction="always"
+        android:icon="@drawable/web"
+        />
+
+    <item
+        android:id="@+id/local"
+        android:title="Local Information"
+        app:showAsAction="never"
+        />
+
+
+    <item
+        android:id="@+id/awareness"
+        android:title="Awareness"
+        app:showAsAction="never"
+        />
+
+    <item
+        android:id="@+id/aboutus"
+        android:title="About"
+        app:showAsAction="never"
+        />
+</menu>
