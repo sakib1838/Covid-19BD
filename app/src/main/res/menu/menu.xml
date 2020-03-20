@@ -1,29 +1,47 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+
+    >
     <item
         android:id="@+id/global"
-        android:title="Global Information"
-        app:showAsAction="always"
+        android:title="Global"
+        android:state_checked="true"
+        android:color="@color/colorPrimaryDark"
         android:icon="@drawable/web"
         />
 
     <item
         android:id="@+id/local"
-        android:title="Local Information"
-        app:showAsAction="never"
+        android:title="Local"
+        android:state_checked="true"
+        android:color="@color/colorPrimaryDark"
+        android:icon="@drawable/ic_flag_black_24dp"
         />
 
 
     <item
         android:id="@+id/awareness"
         android:title="Awareness"
-        app:showAsAction="never"
+        android:state_checked="true"
+        android:color="@color/colorPrimaryDark"
+        android:icon="@drawable/ic_warning_black_24dp"
+        />
+
+    <item
+        android:id="@+id/news"
+        android:title="News"
+        android:state_checked="true"
+        android:color="@color/colorPrimaryDark"
+        android:icon="@drawable/ic_news_24dp"
         />
 
     <item
         android:id="@+id/aboutus"
         android:title="About"
-        app:showAsAction="never"
+        android:state_checked="true"
+        android:color="@color/colorPrimaryDark"
+        android:icon="@drawable/ic_about_black_24dp"
+
         />
 </menu>

@@ -2,12 +2,14 @@ package com.example.covid_19bd;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.widget.FrameLayout;
 import android.widget.TextView;
 
 import com.android.volley.Request;
@@ -16,68 +18,47 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
 public class MainActivity extends AppCompatActivity {
-    TextView txtViewCase,txtViewDeath,txtViewRecovered;
+
+    private BottomNavigationView bottomNavigationView;
+    private FrameLayout frameLayout;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        txtViewCase=(TextView)findViewById(R.id.textViewCase);
-        txtViewDeath=(TextView)findViewById(R.id.textViewDeath);
-        txtViewRecovered=(TextView)findViewById(R.id.textViewRecover);
-        getvalue();
+        //txtViewCase=(TextView)findViewById(R.id.textViewCase);
+        //txtViewDeath=(TextView)findViewById(R.id.textViewDeath);
+       // txtViewRecovered=(TextView)findViewById(R.id.textViewRecover);
+        //getvalue();
 
-    }
+        frameLayout=(FrameLayout)findViewById(R.id.container);
+        bottomNavigationView=(BottomNavigationView)findViewById(R.id.bottom_navigation);
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater menuInflater = getMenuInflater();
-        menuInflater.inflate(R.menu.menu,menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        switch (item.getItemId()){
-            case R.id.local:
-                startActivity(new Intent(MainActivity.this,CountriesInformationActivity.class));
-                return true;
-
-            default:
-                return super.onOptionsItemSelected(item);
-        }
-
-    }
-
-    private  void getvalue(){
-        String url="https://coronavirus-19-api.herokuapp.com/all";
-        StringRequest stringRequest=new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
+        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
-            public void onResponse(String response) {
-                try {
-                    JSONObject jsonObject = new JSONObject(response.toString());
-                    String cases=jsonObject.getString("cases");
-                    String death=jsonObject.getString("deaths");
-                    String recover=jsonObject.getString("recovered");
-                    txtViewCase.setText(cases);
-                    txtViewDeath.setText(death);
-                    txtViewRecovered.setText(recover);
-                    System.out.println(cases+death+recover);
-                } catch (JSONException e) {
-                    e.printStackTrace();
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                Fragment  selectedFragment=null;
+                switch (item.getItemId()){
+                    case R.id.global:
+                        selectedFragment=new GlobalFragment();
+                        break;
+
+                    case R.id.local:
+                        selectedFragment=new LocalFragment();
+
                 }
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-
+                getSupportFragmentManager().beginTransaction().replace(R.id.container,selectedFragment).commit();
+                return true;
             }
         });
-        RequestQueue requestQueue= Volley.newRequestQueue(MainActivity.this);
-        requestQueue.add(stringRequest);
+
     }
+
+
+
 }

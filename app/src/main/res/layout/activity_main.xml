@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -9,108 +9,24 @@
     android:background="#FFFFFF"
     tools:context=".MainActivity">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="40sp"
-        android:layout_marginTop="20dp"
-        android:text="Global Information"
-        android:layout_marginBottom="100dp"
+    <FrameLayout
+        android:id="@+id/container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/bottom_navigation"
         />
 
-    <LinearLayout
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottom_navigation"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        >
+        android:background="@color/colorPrimary"
+        app:itemIconTint="#FFFFFF"
+        app:itemTextColor="#FFFFFF"
+        android:layout_alignParentBottom="true"
+        app:labelVisibilityMode="labeled"
+        app:menu="@menu/menu"
+        />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:background="@drawable/shadow"
-            android:layout_marginBottom="20dp"
-            >
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Corona Cases"
-                android:textSize="25sp"
-                android:padding="10dp"
-
-                />
-
-            <TextView
-                android:id="@+id/textViewCase"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="number"
-                android:textSize="20sp"
-                android:padding="10dp"
-                />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:background="@drawable/shadow"
-            android:layout_marginBottom="20dp"
-            >
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Deaths"
-                android:textSize="25sp"
-                android:padding="10dp"
-
-                />
-
-            <TextView
-                android:id="@+id/textViewDeath"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="number"
-                android:textSize="20sp"
-                android:padding="10dp"
-                />
-
-        </LinearLayout>
-
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:background="@drawable/shadow"
-            android:layout_marginBottom="20dp"
-            >
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Recovered"
-                android:textSize="25sp"
-                android:padding="10dp"
-
-                />
-
-            <TextView
-                android:id="@+id/textViewRecover"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="number"
-                android:textSize="20sp"
-                android:padding="10dp"
-                />
-
-        </LinearLayout>
-
-
-
-    </LinearLayout>
-
-
-
-
-    </LinearLayout>
+    </RelativeLayout>
