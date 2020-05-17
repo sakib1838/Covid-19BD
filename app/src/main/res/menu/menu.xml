@@ -12,6 +12,14 @@
         />
 
     <item
+        android:id="@+id/home"
+        android:title="Home"
+        android:state_checked="true"
+        android:color="@color/colorPrimaryDark"
+        android:icon="@drawable/ic_home_black_24dp"
+        />
+
+    <item
         android:id="@+id/local"
         android:title="Local"
         android:state_checked="true"
@@ -21,27 +29,13 @@
 
 
     <item
-        android:id="@+id/awareness"
-        android:title="Awareness"
+        android:id="@+id/chart"
+        android:title="Charts"
         android:state_checked="true"
         android:color="@color/colorPrimaryDark"
         android:icon="@drawable/ic_warning_black_24dp"
         />
 
-    <item
-        android:id="@+id/news"
-        android:title="News"
-        android:state_checked="true"
-        android:color="@color/colorPrimaryDark"
-        android:icon="@drawable/ic_news_24dp"
-        />
 
-    <item
-        android:id="@+id/aboutus"
-        android:title="About"
-        android:state_checked="true"
-        android:color="@color/colorPrimaryDark"
-        android:icon="@drawable/ic_about_black_24dp"
 
-        />
 </menu>

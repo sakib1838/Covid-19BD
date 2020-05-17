@@ -52,6 +52,15 @@ public class MainActivity extends AppCompatActivity {
 
                     case R.id.local:
                         selectedFragment=new LocalFragment();
+                        break;
+
+
+                    case R.id.home:
+                        selectedFragment=new HomeFragment();
+                        break;
+                    case R.id.chart:
+                        selectedFragment=new SearchFragment();
+                        break;
 
                 }
                 getSupportFragmentManager().beginTransaction().replace(R.id.container,selectedFragment).commit();
