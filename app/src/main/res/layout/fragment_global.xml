@@ -11,7 +11,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:orientation="vertical"
         android:gravity="center_horizontal"
         >
@@ -22,108 +22,109 @@
         android:layout_marginTop="20dp"
         android:text="Global Information"
         android:layout_marginBottom="50dp"
+        android:textColor="#F4511E"
         />
 
         <ScrollView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:padding="10dp"
             >
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:background="@drawable/ic_5879316___coronavirus_covid19_disease_infection_pandemic_virus"
+               >
 
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:background="@drawable/shadow"
+                    android:layout_marginBottom="20dp"
+                    >
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Corona Cases"
+                        android:textSize="20sp"
+                        android:padding="10dp"
+                        android:textColor="#000000"
+                        />
+
+                    <TextView
+                        android:id="@+id/textViewCase"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="number"
+                        android:textSize="18sp"
+                        android:padding="10dp"
+                        android:textColor="#00897B"
+                        />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:background="@drawable/shadow"
+                    android:layout_marginBottom="20dp"
+                    >
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Deaths"
+                        android:textSize="20sp"
+                        android:padding="10dp"
+                        android:textColor="#000000"
+                        />
+
+                    <TextView
+                        android:id="@+id/textViewDeath"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="number"
+                        android:textSize="18sp"
+                        android:padding="10dp"
+                        android:textColor="#D30202"
+                        />
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:background="@drawable/shadow"
+                    android:layout_marginBottom="20dp"
+                    >
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Recovered"
+                        android:textSize="20sp"
+                        android:padding="10dp"
+                        android:textColor="#000000"
+                        />
+
+                    <TextView
+                        android:id="@+id/textViewRecover"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="number"
+                        android:textSize="18sp"
+                        android:padding="10dp"
+                        android:textColor="#006C05"
+                        />
+
+                </LinearLayout>
+
+            </LinearLayout>
 
         </ScrollView>
-
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:background="@drawable/shadow"
-                android:layout_marginBottom="20dp"
-                >
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Corona Cases"
-                    android:textSize="20sp"
-                    android:padding="10dp"
-
-                    />
-
-                <TextView
-                    android:id="@+id/textViewCase"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="number"
-                    android:textSize="18sp"
-                    android:padding="10dp"
-                    />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:background="@drawable/shadow"
-                android:layout_marginBottom="20dp"
-                >
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Deaths"
-                    android:textSize="20sp"
-                    android:padding="10dp"
-
-                    />
-
-                <TextView
-                    android:id="@+id/textViewDeath"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="number"
-                    android:textSize="18sp"
-                    android:padding="10dp"
-                    />
-
-            </LinearLayout>
-
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:background="@drawable/shadow"
-                android:layout_marginBottom="20dp"
-                >
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Recovered"
-                    android:textSize="20sp"
-                    android:padding="10dp"
-
-                    />
-
-                <TextView
-                    android:id="@+id/textViewRecover"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="number"
-                    android:textSize="18sp"
-                    android:padding="10dp"
-                    />
-
-            </LinearLayout>
-
-        </LinearLayout>
-
-
-
 
 
     </LinearLayout>

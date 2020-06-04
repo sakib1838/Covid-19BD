@@ -1,24 +1,21 @@
 package com.example.covid_19bd;
 
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.DialogInterface;
+import android.graphics.Color;
+import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
-import android.provider.ContactsContract;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
-import android.widget.EditText;
 import android.widget.ImageButton;
-import android.widget.LinearLayout;
-import android.widget.ListView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -27,60 +24,60 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.github.mikephil.charting.charts.PieChart;
+import com.github.mikephil.charting.components.Legend;
+import com.github.mikephil.charting.data.Entry;
+import com.github.mikephil.charting.data.PieData;
+import com.github.mikephil.charting.data.PieDataSet;
+import com.github.mikephil.charting.formatter.DefaultValueFormatter;
+import com.github.mikephil.charting.formatter.PercentFormatter;
+import com.github.mikephil.charting.utils.ColorTemplate;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 
-public class LocalFragment extends Fragment {
+public class SearchFragment extends Fragment {
 
-    //ListView listView;
-    RecyclerView recyclerView;
-    RecyclerViewAdapter recyclerViewAdapter;
-    ProgressDialog progressDialog;
     AutoCompleteTextView autoCompleteTextView;
-    ImageButton searchBtn,clearSearch;
-    LinearLayout linearLayout;
-    TextView textViewCountry,textViewCases,textViewTodayCases,textViewDeaths,textViewTodayDeaths,textViewActive,textViewRecovered,textViewCritical,textViewCasePerMillion;
-    ListViewAdapter listViewAdapter;
-    ArrayList<CountryEntity>countryEntityArrayList;
+    ArrayList<CountryEntity> countryEntityArrayList;
     ArrayList<String> country;
-    DecimalFormat decimalFormat=new DecimalFormat("#,###,###");
-
+    ImageButton searchBtn;
+    ProgressDialog progressDialog;
+    PieChart pieChart;
+    String restaurants[] = {
+            "KFC",
+            "Dominos",
+            "Pizza Hut",
+            "Burger King",
+            "Subway",
+            "Dunkin' Donuts",
+            "Starbucks",
+            "Cafe Coffee Day"
+    };
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
+        View view= inflater.inflate(R.layout.fragment_search, container, false);
 
-        // Inflate the layout for this fragment
-        View view= inflater.inflate(R.layout.fragment_local, container, false);
-
-
-        autoCompleteTextView=(AutoCompleteTextView) view.findViewById(R.id.searchAutoCompletText);
+        autoCompleteTextView=(AutoCompleteTextView)view.findViewById(R.id.autoComplete);
         searchBtn=(ImageButton) view.findViewById(R.id.searchbtn);
-
-        linearLayout=(LinearLayout)view.findViewById(R.id.searchResult);
-
-        textViewCountry=(TextView)view.findViewById(R.id.countryName);
-        textViewCases=(TextView)view.findViewById(R.id.txtCases);
-        textViewTodayCases=(TextView)view.findViewById(R.id.todayCases);
-        textViewDeaths=(TextView)view.findViewById(R.id.deaths);
-        textViewTodayDeaths=(TextView)view.findViewById(R.id.todaydeaths);
-        textViewActive=(TextView)view.findViewById(R.id.active);
-        textViewRecovered=(TextView)view.findViewById(R.id.recovered);
-        textViewCritical=(TextView)view.findViewById(R.id.critical);
-        textViewCasePerMillion=(TextView)view.findViewById(R.id.casePerMillion);
-
-        recyclerView=(RecyclerView) view.findViewById(R.id.countriesList);
+        pieChart=(PieChart)view.findViewById(R.id.pieChart);
         getCountryInformation();
+
+//        ArrayAdapter<String> arrayAdapter= new ArrayAdapter<>(getActivity(),android.R.layout.simple_list_item_1,restaurants);
+//        autoCompleteTextView.setThreshold(1);
+//        autoCompleteTextView.setAdapter(arrayAdapter);
+
         searchBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                pieChart.clear();
                 String text=autoCompleteTextView.getText().toString();
                 System.out.println(text);
                 searchCountry(text);
@@ -88,20 +85,8 @@ public class LocalFragment extends Fragment {
             }
         });
 
-
-
-        clearSearch=(ImageButton)view.findViewById(R.id.clearsearch);
-        clearSearch.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                linearLayout.setVisibility(View.GONE);
-                recyclerView.setVisibility(View.VISIBLE);
-                autoCompleteTextView.setText("");
-            }
-        });
         return view;
     }
-
 
     private void showgetData(){
         this.progressDialog= new ProgressDialog(getContext());
@@ -119,44 +104,22 @@ public class LocalFragment extends Fragment {
             public void onResponse(String response) {
                 try {
                     JSONArray dataArray = new JSONArray(response);
-                    countryEntityArrayList = new ArrayList<>();
                     country=new ArrayList<>();
                     for (int i = 0; i < dataArray.length(); i++) {
                         JSONObject jsonObject = dataArray.getJSONObject(i);
-                        CountryEntity countryEntity = new CountryEntity();
-                        countryEntity.setCountry(jsonObject.getString("country"));
-                        countryEntity.setCases(jsonObject.getString("cases"));
-                        countryEntity.setTodayCases(jsonObject.getString("todayCases"));
-                        countryEntity.setDeaths(jsonObject.getString("deaths"));
-                        countryEntity.setTodayDeaths(jsonObject.getString("todayDeaths"));
-                        countryEntity.setRecovered(jsonObject.getString("recovered"));
-                        countryEntity.setActive(jsonObject.getString("active"));
-                        countryEntity.setCritical(jsonObject.getString("critical"));
-                        countryEntity.setCaseperMillion(jsonObject.getString("casesPerOneMillion"));
-                        System.out.println(jsonObject.toString());
-                        countryEntityArrayList.add(countryEntity);
                         country.add(jsonObject.getString("country"));
                     }
-                    if(!(DataHold.countryEntityArrayList ==null)){
-                        DataHold.countryEntityArrayList.clear();
+                    if(!(DataHold.countries ==null)){
                         DataHold.countries.clear();
                     }
-                    DataHold.countryEntityArrayList=countryEntityArrayList;
                     DataHold.countries=country;
-                    System.out.println(DataHold.countryEntityArrayList.size());
-                    if(!(DataHold.countryEntityArrayList==null) && DataHold.countryEntityArrayList.size()>0){
+                    System.out.println(DataHold.countries.size());
+                    if(!(DataHold.countries==null) && DataHold.countries.size()>0){
                         ArrayAdapter<String> arrayAdapter= new ArrayAdapter<>(getContext(),android.R.layout.simple_list_item_1,DataHold.countries);
                         autoCompleteTextView.setThreshold(1);
                         autoCompleteTextView.setAdapter(arrayAdapter);
-                        //listViewAdapter=new ListViewAdapter(getContext(),DataHold.countryEntityArrayList);
-                        //listView.setAdapter(listViewAdapter);
-                        recyclerViewAdapter=new RecyclerViewAdapter(getContext(),countryEntityArrayList);
-                        recyclerView.setHasFixedSize(true);
-                        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-                        recyclerView.setAdapter(recyclerViewAdapter);
                     }else{
-                        recyclerView.setAdapter(null);
-
+                        Toast.makeText(getContext(),"NO Data Available",Toast.LENGTH_LONG).show();
                     }
                     progressDialog.dismiss();
 
@@ -184,28 +147,77 @@ public class LocalFragment extends Fragment {
             public void onResponse(String response) {
                 try {
                     JSONObject jsonObject = new JSONObject(response);
+                    ArrayList<Entry> yvalues = new ArrayList<Entry>();
+                    if(yvalues.size()>0 && yvalues!=null){
+                        yvalues.clear();
+                    }
                     String country = jsonObject.getString("country");
                     String cases=jsonObject.getString("cases");
+                    //yvalues.add(new Entry(Integer.valueOf(cases),0));
                     String tcases=jsonObject.getString("todayCases");
+                    //yvalues.add(new Entry(Integer.valueOf(tcases),1));
                     String deaths=jsonObject.getString("deaths");
+                    float percdeath=Float.parseFloat(deaths)/Float.parseFloat(cases)*100;
+                    System.out.println(percdeath);
+                    yvalues.add(new Entry(percdeath,0));
                     String tdeaths=jsonObject.getString("todayDeaths");
+                    if(tdeaths.equals("0")){
+                        yvalues.add(new Entry(0,1));
+                    }else{
+                        float perctdeath=Float.parseFloat(tdeaths)/Float.parseFloat(tcases)*100;
+                        System.out.println(perctdeath);
+                        yvalues.add(new Entry(perctdeath,1));
+                    }
+
                     String recovered=jsonObject.getString("recovered");
+
+                    if(recovered.equals("null")){
+                        yvalues.add(new Entry(0,2));
+                    }else{
+                        float percrecovered=Float.parseFloat(recovered)/Float.parseFloat(cases)*100;
+                        System.out.println(percrecovered);
+                        yvalues.add(new Entry(percrecovered,2));
+                    }
+
                     String active=jsonObject.getString("active");
+                    /*
+                    if(active.equals("null")){
+                        yvalues.add(new Entry(0,3));
+                    }else{
+                        float percactive=Float.parseFloat(active)/Float.parseFloat(cases)*100;
+                        yvalues.add(new Entry(percactive,3));
+                    }
+*/
                     String critical=jsonObject.getString("critical");
+                    float perccritical=Float.parseFloat(critical)/Float.parseFloat(cases)*100;
+                    System.out.println(perccritical);
+                    yvalues.add(new Entry(perccritical,3));
                     String casePerMillion=jsonObject.getString("casesPerOneMillion");
+                    //float percCasePerMillion=Float.parseFloat(casePerMillion)/Float.parseFloat(cases)*100;
+                    //yvalues.add(new Entry(percCasePerMillion,5));
+                    PieDataSet dataSet = new PieDataSet(yvalues, "");
+                    pieChart.setDescription("Cases:"+cases+"\n"+"TodayCases:"+tcases+"\n"+"Active:"+"\n"+active+"CasePerMillion:"+casePerMillion);
+                    ArrayList<String> xVals = new ArrayList<String>();
+                    xVals.add("Death");
+                    xVals.add("TodayDeaths");
+                    xVals.add("Recovered");
+                    xVals.add("Critical");
 
-                    textViewCountry.setText(country);
-                    textViewCases.setText("Cases: "+decimalFormat.format(Integer.valueOf(cases)));
-                    textViewTodayCases.setText("Today:"+decimalFormat.format(Integer.valueOf(tcases)));
-                    textViewDeaths.setText("Deaths:"+decimalFormat.format(Integer.valueOf(deaths)));
-                    textViewTodayDeaths.setText("Today:"+decimalFormat.format(Integer.valueOf(tdeaths)));
-                    textViewRecovered.setText("Recovered:"+decimalFormat.format(Integer.valueOf(recovered)));
-                    textViewActive.setText("Active:"+decimalFormat.format(Integer.valueOf(active)));
-                    textViewCritical.setText("Critical: "+decimalFormat.format(Integer.valueOf(critical)));
-                    textViewCasePerMillion.setText("CasesPerOneMillion: "+decimalFormat.format(Integer.valueOf(casePerMillion)));
-
-                    linearLayout.setVisibility(View.VISIBLE);
-                    recyclerView.setVisibility(View.INVISIBLE);
+                    PieData data = new PieData(xVals,dataSet);
+                    data.setValueFormatter(new PercentFormatter());
+                    pieChart.setData(data);
+                    dataSet.setColors(ColorTemplate.VORDIPLOM_COLORS);
+                    Legend l =pieChart.getLegend();
+                    l.setWordWrapEnabled(true);
+                    l.setYOffset(5f);
+                    l.setFormSize(10f); // set the size of the legend forms/shapes
+                    l.setForm(Legend.LegendForm.CIRCLE); // set what type of form/shape should be used
+                    l.setTextSize(12f);
+                    l.setTextColor(Color.BLACK);
+                    data.setValueTextSize(5f);
+                    data.setValueTextColor(Color.DKGRAY);
+                    pieChart.animateXY(1400, 1400);
+                    System.out.println(response);
                     progressDialog.dismiss();
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -233,9 +245,6 @@ public class LocalFragment extends Fragment {
 
 
     }
-
-
-
 
 
 

@@ -3,97 +3,111 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@drawable/shadow"
-    android:padding="5dp"
     >
-
-    <TextView
-        android:id="@+id/countryName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="20sp"
-        android:text="Country"
-        android:padding="5dp"
-        />
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
+        android:orientation="vertical"
         >
         <TextView
-            android:id="@+id/txtCases"
+            android:id="@+id/countryName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="cases"
-            android:textSize="16sp"
-            android:padding="5dp"
-
-            />
-
-        <TextView
-            android:id="@+id/todayCases"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="cases"
-            android:textSize="16sp"
+            android:textSize="20sp"
+            android:text="Country"
             android:padding="5dp"
             />
 
-        <TextView
-            android:id="@+id/active"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="active"
-            android:textSize="16sp"
-            android:padding="5dp"
-            />
+            android:orientation="horizontal"
+            >
+            <TextView
+                android:id="@+id/txtCases"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="cases"
+                android:textSize="16sp"
+                android:padding="5dp"
 
-    </LinearLayout>
+                />
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        >
-        <TextView
-            android:id="@+id/deaths"
-            android:layout_width="wrap_content"
+            <TextView
+                android:id="@+id/todayCases"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="cases"
+                android:textSize="16sp"
+                android:padding="5dp"
+                />
+
+            <TextView
+                android:id="@+id/active"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="active"
+                android:textSize="16sp"
+                android:padding="5dp"
+                />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="cases"
-            android:textSize="16sp"
-            android:padding="5dp"
+            android:orientation="horizontal"
+            >
+            <TextView
+                android:id="@+id/deaths"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="cases"
+                android:textSize="16sp"
+                android:padding="5dp"
 
-            />
+                />
 
-        <TextView
-            android:id="@+id/todaydeaths"
-            android:layout_width="wrap_content"
+            <TextView
+                android:id="@+id/todaydeaths"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="cases"
+                android:textSize="16sp"
+                android:padding="5dp"
+                />
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="cases"
-            android:textSize="16sp"
-            android:padding="5dp"
-            />
+            android:orientation="horizontal"
+            >
 
+            <TextView
+                android:id="@+id/recoveredPeople"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="recovered"
+                android:textSize="16sp"
+                android:padding="5dp"
+                />
 
-    </LinearLayout>
+            <TextView
+                android:id="@+id/critical"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="critical"
+                android:textSize="16sp"
+                android:padding="5dp"
+                />
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        >
+        </LinearLayout>
 
         <TextView
-            android:id="@+id/recovered"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="recovered"
-            android:textSize="16sp"
-            android:padding="5dp"
-            />
-
-        <TextView
-            android:id="@+id/critical"
+            android:id="@+id/casePerMillion"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="critical"
@@ -103,14 +117,9 @@
 
     </LinearLayout>
 
-    <TextView
-        android:id="@+id/casePerMillion"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="critical"
-        android:textSize="16sp"
-        android:padding="5dp"
-        />
+
+
+
 
 
 

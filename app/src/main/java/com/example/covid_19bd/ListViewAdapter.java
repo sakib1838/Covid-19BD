@@ -11,14 +11,15 @@ import org.w3c.dom.Text;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
+import java.util.List;
 
 public class ListViewAdapter extends BaseAdapter {
-    private Context context;
-    ArrayList<CountryEntity>countryEntityArrayList;
+    private Context mcontext;
+    private ArrayList<CountryEntity> countryEntityArrayList;
     DecimalFormat decimalFormat=new DecimalFormat("#,###,###");
 
     public ListViewAdapter(Context context,ArrayList<CountryEntity>countryEntityArrayList){
-        this.context=context;
+        mcontext=context;
         this.countryEntityArrayList=countryEntityArrayList;
     }
 
@@ -43,7 +44,7 @@ public class ListViewAdapter extends BaseAdapter {
         if(view == null){
             holder=new ListViewAdapter.ViewHolder();
 
-            LayoutInflater layoutInflater=(LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            LayoutInflater layoutInflater=(LayoutInflater)mcontext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             view=layoutInflater.inflate(R.layout.listitem,null,true);
             holder.textViewCountry=(TextView)view.findViewById(R.id.countryName);
             holder.textViewCases=(TextView)view.findViewById(R.id.txtCases);
